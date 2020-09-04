@@ -1,13 +1,16 @@
 <template>
   <div id="app">
+    <PositionOptionApi/>
   </div>
 </template>
 
 <script>
+import PositionOptionApi from './components/PositionOptionApi.vue'
 
 export default {
   name: 'App',
   components: {
+    PositionOptionApi
   }
 }
 </script>
