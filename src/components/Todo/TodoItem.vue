@@ -2,20 +2,29 @@
     <div>
       {{ todo.id }}
       {{ todo.text }}
-      <button @click="removeTodo(todo.id)">x</button>
+      <button @click="remove()">x</button>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, inject } from 'vue'
+import { TodoSymbol } from './useTodo.ts'
 
 export default defineComponent ({
   props: {
     todo: {
       type: Object
-    },
-    removeTodo: {
-      type: Function
+    }
+  },
+
+  setup(props) {
+    const { removeTodo } = inject(TodoSymbol)
+    const remove = () => {
+      removeTodo(props.todo.id);
+    }
+
+    return {
+      remove,
     }
   }
 })

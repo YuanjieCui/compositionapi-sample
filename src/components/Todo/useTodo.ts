@@ -1,5 +1,6 @@
 import { reactive, toRefs } from 'vue'
 
+export const TodoSymbol = Symbol('todo');
 
 export const useTodo = () => {
   const state = reactive({

@@ -10,8 +10,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
-import { useTodo } from './useTodo.ts'
+import { defineComponent, reactive, toRefs, provide } from 'vue'
+import { TodoSymbol, useTodo } from './useTodo.ts'
 import TodoItem from './TodoItem.vue'
 
 export default defineComponent ({
@@ -24,12 +24,18 @@ export default defineComponent ({
       content: ''
     })
 
-    const { todos, addTodo, removeTodo } = useTodo()
+
+    const todo = useTodo()
+
+    provide(TodoSymbol, todo);
+
+    const { todos, addTodo, removeTodo } = todo;
 
     const handleSubmit = () => {
       addTodo(state.content)
       state.content = ''
     }
+
 
     return {
       ...toRefs(state),
